@@ -366,3 +366,6 @@ const salaries = [5500, 8000, 6500, 9000, 10000, 15000, 25000];
 //   .filter((s) => s < 9000)
 //   .map((s) => Math.trunc(s * 1.1))
 //   .forEach((s) => console.log(s));
+
+//!***************************REDUCE***************************************
+// carpma toplma varsa bu kullanılır.
