@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+
+    <title>JS-13 DOM Intro</title>
+  </head>
+  <body id="body">
+    <header id="header">
+      <h1 style="text-align: center">DOM SELECTORS</h1>
+    </header>
+    <main>
+      <section class="add-item">
+        <h2>ADD NEW ITEM</h2>
+        <input id="input" type="text" value="GO" />
+        <input id="btn" type="button" value="ADD" />
+      </section>
+      <section class="item-list">
+        <h4>ITEM LIST</h4>
+        <ul>
+          <li class="list">HTML</li>
+          <li class="list">
+            CSS <span style="display: none"> Cascade Style Sheet</span>
+          </li>
+          <li class="list">Javascript</li>
+          <li class="list">React</li>
+          <li class="list">Django</li>
+        </ul>
+      </section>
+      <header>
+        <div class="card-header">
+          <h3 class="cart-title h1" id="title">Todo App</h3>
+        </div>
+      </header>
+      ​
+      <ul id="task-list">
+        <h2>Part 1</h2>
+        <li class="task" style="color: red; font-size: 20px">Görev 1</li>
+        <li class="task" style="color: red; font-size: 20px">Görev 2</li>
+        <li id="g3" class="task" style="color: red; font-size: 20px">
+          Görev 3
+        </li>
+      </ul>
+      ​
+      <ul id="task-list2" class="task-class">
+        <h2>part2</h2>
+        <li class="task2">Görev 4</li>
+        <li class="task2">Görev 5</li>
+        <li class="task2">Görev 6</li>
+      </ul>
+      ​
+    </main>
+    DOM 3.SAYFA
+    <p>Click the following button and see result</p>
+    <input type="button" onmouseover="sayHello()" value="Say Hello" />
+    <!-- bu bırıncı yontemdır. HTML kodunda tanımlayıp kullanmak. 2. yontemde ıse, js. tarafında yazıp hazırladıgımız fonksıyonları-olayları cagırmak seklınde olur. -->
+    <h1
+      class="header"
+      onmouseover="style.color ='pink'"
+      onmouseout="style.color='blue'"
+    >
+      DOM Temelleri ilk islem gerceklestırılıyor
+    </h1>
+    <!--  2. yontemde ıse, js. tarafında yazıp hazırladıgımız fonksıyonları-olayları cagırmak seklınde olur. -->
+    <h1 class="header2" onmouseover="yaziMavi()" onmouseout="yaziSari()">
+      DOM Temelleri 2.yontem
+    </h1>
+    <h1 class="header3" onmouseover="yaziMavi()" onmouseout="yaziSari()">
+      DOM Temelleri 3.yontem
+    </h1>
+    <h1 class="header4" onmouseover="yaziMavi()" onmouseout="yaziSari()">
+      DOM Temelleri 4.yontem
+    </h1>
+
+    <button id="btn">BUTTON</button>
+    <h1 id="header">EVENT</h1>
+    <!-- <script src="11.DOM-1.js"></script>
+    <script src="11.DOM-2.js"></script> -->
+    <script src="11.DOM-3.js"></script>
+  </body>
+</html>

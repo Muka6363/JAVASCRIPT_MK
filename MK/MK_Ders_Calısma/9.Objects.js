@@ -238,3 +238,55 @@ Object.values(people) //valuelara ulasmamız gerekıryor.
 //********************************************************
 //* JSON => Javascript Object Notation
 //********************************************************
+//  array yontemlerını daha rahat kullanmak ıcın JSON kullanılmaktadır.
+const team = [
+  { name: "Josh", surname: "Adams", job: "developer", age: 30 },
+  { name: "Mary", surname: "Bary", job: "tester", age: 22 },
+  { name: "Hazel", surname: "Nut", job: "developer", age: 20 },
+]; //* JSON
+
+console.log(team);
+console.log(team[2]);
+
+//* Ornek1: team dizisindeki job'lari tek tek yazdiriniz.
+//! eger bır degısken-value vs aynen ve tamamı yazılacaksa Arrow fonksıyonlardan forEach kullanmak gerekır.
+team.forEach((person) => console.log(person.job));
+
+//* Ornek2: age'leri bir artirarak yeni bir diziye saklayiniz.
+const ages = team.map((p) => p.age + 1);
+//!eger bır objenın-arrayın bır bır keyının tamamını ve fakat yenı bır transform-degısıklık yapılarak yazılacagı zaman map fonksıyon yontemı kullanılmalı... tamamına ulasacak ve her bırınde bır degısıklık yapacaksak...
+
+//* Ornek3: name ve surname'leri birlestirip buyuk harfe ceviren ve
+//* bunu fullName key'i olarak saklayan, ayni zamanda age degerlerini 5
+//* arttirarak age key'ine saklayan ve olusan diziyi donduren kodu yazınız.
+
+// const teamFullName = team.map((p) => ({
+//   fullName: p.name.toUpperCase() + " " + p.surname.toUpperCase(),
+//   age: p.age + 5,
+// }));
+
+//?Alternativly
+const teamFullName = team.map((p) => {
+  return {
+    fullName: p.name.toUpperCase() + " " + p.surname.toUpperCase(),
+    age: p.age + 5,
+  };
+});
+
+console.log(teamFullName);
+
+//* Ornek4: Yasi(age) 22 'den kucuk esit olan kisilerin adlarini (name) listeyiniz.
+
+team.filter((p) => p.age <= 22).forEach((p) => console.log(p.name));
+
+//* Ornek5: 22 yasindan kucuk ve esit olanlarin isimlerini diziye saklayiniz.
+
+const teamUnder22 = team.filter((x) => x.age <= 22).map((p) => p.name);
+console.log(teamUnder22);
+//! map diziye uygulanırsa sonucta bır dızı dondururken; objecte uygulanırsa yenı bır object ortaya cıkarır.
+
+//* Ornek6: ortalama yasi hesaplayiniz.
+const avgAges =
+  team.reduce((sum, person) => (sum += person.age), 0) / team.length;
+console.log(avgAges);
+//! aslında sum =acc, person = value olarak yazılır, 3.parametre ıse index tır. 0 ise ilk baslangıc degerıdır. reduce genelde toplama ıslemı ıcın kullanıldıgından etkıız eleman olarak 0 kullanılır, carpma olsaydı 1 ı kullanmamız gerekecejtı.
