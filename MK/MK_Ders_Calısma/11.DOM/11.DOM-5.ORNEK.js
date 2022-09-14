@@ -22,7 +22,6 @@ addBtn.addEventListener("click", () => {
     alert("Please enter a language");
   } else if (langInput.value.toLowerCase() === "javascript") {
     newUl.innerHTML += `<li class = "text-danger">${langInput.value}</li>`;
-    langInput.value = "girdiğiniz yazı kırmızıyla yazıladı";
     langInput.value = "";
   } else {
     //aksı durumda asagıdakı codu calıstır. jsde olusturdugumuz ul ye bu yazılanı bır li etıketı ıcerısınde yazdır.
@@ -31,16 +30,6 @@ addBtn.addEventListener("click", () => {
   }
   langInput.focus(); //bu ıslemler her yapıldıgında kutucuk aktıf edılsın-oraya focuslansın. acıldıgında
 });
-
-if (!langInput.value) {
-  alert("Please enter a language");
-} else if (langInput.value.toLowerCase() === "javascript") {
-  newUl.innerHTML += `<li class = "text-danger">${langInput.value}</li>`;
-} else {
-  newUl.innerHTML += `<li>${langInput.value}</li>`;
-  langInput.value = "";
-}
-langInput.focus();
 
 //? deleteBtn event handler
 deleteBtn.addEventListener("click", () => {
