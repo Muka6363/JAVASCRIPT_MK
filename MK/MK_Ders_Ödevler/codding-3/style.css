@@ -1,0 +1,17 @@
+.myli {
+  list-style-type: none;
+  display: flex;
+  justify-content: space-between;
+  text-align: center;
+  width: 10rem;
+  border: 2px solid red;
+}
+.buton1 {
+}
+.input {
+  background-color: chartreuse;
+  padding: 1px;
+}
+.myul {
+  justify-content: center;
+}
