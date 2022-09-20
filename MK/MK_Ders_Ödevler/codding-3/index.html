@@ -20,29 +20,37 @@
     />
     <link rel="stylesheet" href="style.css" />
   </head>
-  <body class="bg-primary">
+  <body class="">
     <div class="container mt-5 text-center">
-      <h1>\___My TODO List Programing___/</h1>
-      <div class="liste d-flex justify-content-center">
-        <input
-          value=""
-          class="input"
-          type="text"
-          placeholder="Add TODO Here...😊"
-        /><button class="buton1">💢</button>
-        <div class="total-comp">
-          <p class="total">Total: <span class="spanTo">0</span></p>
-          <p class="comp">Completed:<span class="spanCo">0</span></p>
-        </div>
+      <h1 class="mb-5 text-white text-bg-dark rounded-5">
+        💢__My TODO List Programing__💢
+      </h1>
+      <h2 class="date text-white">2022/9/19</h2>
+      <div class="liste d-flex justify-content-center mb-5">
+        <section class="d-flex justify-content-center gap-2 mt-3">
+          <input
+            type="text"
+            class="input border border-none rounded-2"
+            placeholder="✍Please enter a text..."
+          />
+          <button id="add-btn" class="btn bg-white">💥</button>
+        </section>
       </div>
-
-      <ul class="myul">
-        <!-- <li class="myli">
-          <i class="fa-solid fa-check"></i></i> 000
+      <div class="total-comp d-flex justify-content-around mb-3">
+        <span class="tota w-25 fs-4 rounded-5 text-bg-danger text-center"
+          >Total: 0</span
+        >
+        <!-- <span class="comp container-fluid fs-4 rounded-5 text-bg-danger text-center">Completed: 0</span> -->
+      </div>
+      <div class="myul w-50">
+        <!-- <li class="myli d-flex justify-content-between">
+          <i class="fa-regular fa-square "></i>
+          <span class="">${input.value}</span>
           <i class="fa-solid fa-trash-can"></i>
         </li> -->
-      </ul>
+      </div>
     </div>
+    <p class="bg-p text-white">💢Türkiye/ŞANLIURFA/Balıklıgöl💢</p>
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"
       integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2"
