@@ -103,16 +103,19 @@ function createListElement(newTodo) {
 //! bunu tespit et ve gerekini yap. (Capturing)
 todoUl.addEventListener("click", (e) => {
   console.log(e.target);
+
   // todo 7-1
   //  li elementinin getAttribute'nu (id) oku.
   //? id değişkeni e.target metodu ile tanımlandığı için sadece tıklanan trash'ın id'sini döndürür.
   const id = e.target.parentElement.getAttribute("id");
   // todo 7-1
+
   //! event, bir delete butonundan geldi ise
   if (e.target.classList.contains("fa-trash")) {
     //? delete butonunun parent'ini DOM'dan sil
     e.target.parentElement.remove();
     // aşağıdaki kısmı(else if'e kadar olan bölüm.) anlamak için önce  // todo 5'i incele.
+
     // todo 7
     //? Dizinin ilgili elementini LS'den sil
     //* todos arrayına git. elemenlarını (todo --> obje'dir.) dolaş, key'i id olanlardan value'si id'ye eşit olmayanları  getir. gelen değerleri tekrar todos değişkenine ata. (todos güncellenmiş oldu.)

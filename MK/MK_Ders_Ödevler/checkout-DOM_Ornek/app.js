@@ -14,7 +14,9 @@ card.addEventListener("click", (e) => {
     fiyat.shift();
     fiyat.shift();
     fiyat = fiyat.join("");
+
     total1.innerText = e.target.previousElementSibling.textContent * fiyat;
+
     totalPrice = Number(total1.textContent) + Number(total2.textContent);
     tax.innerText = ((totalPrice * 18) / 100).toFixed(2);
   } else if (e.target.classList.contains("minus")) {
