@@ -1,39 +1,93 @@
 let card = document.querySelector(".card");
-let total1 = document.querySelector(".total1");
-let total2 = document.querySelector(".total2");
-let totalPrice;
+let subTotal = document.querySelector("#sub-total");
 let tax = document.querySelector("#tax");
+let shipping = document.getElementById("shipping");
+let son = document.getElementById("son");
 
 card.addEventListener("click", (e) => {
+  let price =
+    e.target.parentElement.parentElement.children[1].innerText.split(" ")[1];
+  let product = e.target.parentElement;
   if (e.target.classList.contains("plus")) {
     e.target.previousElementSibling.innerText =
-      Number(e.target.previousElementSibling.textContent) + 1;
-    let fiyat = e.target.parentNode.parentNode.children[1].textContent
-      .trim()
-      .split("");
-    fiyat.shift();
-    fiyat.shift();
-    fiyat = fiyat.join("");
+      Number(e.target.previousElementSibling.innerText) + 1;
 
-    total1.innerText = e.target.previousElementSibling.textContent * fiyat;
+    e.target.parentElement.lastElementChild.innerText = (
+      e.target.previousElementSibling.innerText * price
+    ).toFixed(2);
+    let total = document.querySelectorAll(".total1");
+    let sum = 0;
+    [...total].forEach((item) => (sum += Number(item.textContent)));
+    subTotal.innerText = sum.toFixed(2);
+    tax.innerText = subTax(sum);
+    shipping.innerText = taxCount(sum);
+    son.innerText = sonToplam();
 
-    totalPrice = Number(total1.textContent) + Number(total2.textContent);
-    tax.innerText = ((totalPrice * 18) / 100).toFixed(2);
+    // console.log(total);
+    // console.log(ttl);
   } else if (e.target.classList.contains("minus")) {
-    if (e.target.nextElementSibling.textContent == 0) {
-      alert("miktar 0 dan küçük olamaz");
-    } else {
-      e.target.nextElementSibling.innerText =
-        Number(e.target.nextElementSibling.textContent) - 1;
-      let fiyat = e.target.parentNode.parentNode.children[1].textContent
-        .trim()
-        .split("");
-      fiyat.shift();
-      fiyat.shift();
-      fiyat = fiyat.join("");
-      total1.innerText = e.target.nextElementSibling.textContent * fiyat;
-      totalPrice = Number(total1.textContent) + Number(total2.textContent);
-      tax.innerText = ((totalPrice * 18) / 100).toFixed(2);
-    }
+    e.target.nextElementSibling.innerText != 0 &&
+      (e.target.nextElementSibling.innerText =
+        Number(e.target.nextElementSibling.innerText) - 1);
+
+    e.target.parentElement.lastElementChild.innerText = (
+      e.target.nextElementSibling.innerText * price
+    ).toFixed(2);
+    let total = document.querySelectorAll(".total1");
+    let sum = 0;
+    [...total].forEach((item) => (sum += Number(item.textContent)));
+    subTotal.innerText = sum.toFixed(2);
+    tax.innerText = subTax(sum);
+
+    shipping.innerText = taxCount(sum);
+    son.innerText = sonToplam();
+    // if( e.target.nextElementSibling.innerText != 0){
+    //   e.target.nextElementSibling.innerText =
+    // Number(e.target.nextElementSibling.innerText) - 1
+    // }
+  } else if (e.target.classList.contains("remove")) {
+    e.target.previousElementSibling.children[1].innerText = 0;
+    e.target.previousElementSibling.lastElementChild.innerText = 0;
+
+    let total = document.querySelectorAll(".total1");
+    let sum = 0;
+    [...total].forEach((item) => (sum += Number(item.textContent)));
+    subTotal.innerText = sum.toFixed(2);
+    tax.innerText = subTax(sum);
+
+    shipping.innerText = taxCount(sum);
+    son.innerText = sonToplam();
+    product.classList.toggle("invisible");
+    console.log(e.target.parentElement);
+  } else if (e.target.classList.contains("img")) {
+    e.target.nextElementSibling.classList.remove("invisible");
+    console.log(e.target.parentElement);
   }
 });
+function subTax(toplam) {
+  return ((toplam * 18) / 100).toFixed(2);
+}
+function sonToplam() {
+  return (
+    Number(subTotal.innerText) +
+    Number(shipping.innerText) +
+    Number(tax.innerText)
+  ).toFixed(2);
+}
+
+function taxCount(sum) {
+  /*! 0-200          19
+    201 - 400        29
+    401- 600         39
+    601          kargo bedava
+*/
+  if (sum > 0 && sum < 200) {
+    return 19;
+  } else if (sum > 200 && sum < 401) {
+    return 29;
+  } else if (sum > 400 && sum < 601) {
+    return 39;
+  } else {
+    return 0;
+  }
+}

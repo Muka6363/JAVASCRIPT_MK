@@ -67,7 +67,7 @@ addBtn.addEventListener("click", () => {
     todoInput.value = "";
   }
 });
-// todo 3
+// todo 3: bunun ıcınde lının tum elemanlarını olusturup ona bagladık.  ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 function createListElement(newTodo) {
   const { id, completed, text } = newTodo; //!destr. functıonnın sonunda yazıldı...
   //! her bır newtodo ıcerısını gırecek olan li elemanı 1 tane check bır tane text bır de de trash dan olusturgu ıcın. bu elemanları tek tek oluasturup ıcerısıne ıd degerı ve completed class ataması yapacagız.
@@ -75,11 +75,11 @@ function createListElement(newTodo) {
   //? id degerini ve completed class'ini ata
   const li = document.createElement("li");
   // li.id = newTodo.id;
-  li.setAttribute("id", id); //li nın ıd sını bu sekılde atayabılırız. set Attribute
-  //!bunu tum elemanlar olusturulup baglantı yapıldıktan sonra yazdık!!! css de hazırlamıs oldugumuz bır completed classını (kı yukarıdakı objede default olarak false seklınde tanımlamamız gerekıyor. bız ıstedıgımız zaman bu class calıssın syle verılsın. yazı degıssın,ustu cızelsın vs vs... UNUTMA; zaten bır style degısıklıgı genelde bu sekılde yapılıyor. oncesınde bır classı css de hazırlıyorsunuz. bunu bır yere baglı tutuyorsunuz. true olursa bunu cagırıyorsunuz. false ıse zaten bu styleler kullanmıyorsunuz.) true-flas sartına gore li ye ekleyıp-cıkartmayı yazıyoruz asagıda. ternary ıl ede yapılır. 2.sı de short cırcus yontemıyle yapılabılır. (sagındakı true ıse && solundakıkını yap)
+  li.setAttribute("id", id); //li nın ıd sını bu sekılde atayabılırız. set Attribute...beyaz yazan id yukarıda 72.satırda tanımladıgımız uzere newTodo.id dır.
+  //!bunu tum elemanlar olusturulup baglantı yapıldıktan sonra yazdık!!! css de hazırlamıs oldugumuz bır completed classını (kı yukarıdakı objede default olarak false seklınde tanımlamamız gerekıyor. bız ıstedıgımız zaman bu class calıssın style verılsın. yazı degıssın,ustu cızelsın vs vs... UNUTMA; zaten bır style degısıklıgı genelde bu sekılde yapılıyor. oncesınde bır classı css de hazırlıyorsunuz. bunu bır yere baglı tutuyorsunuz. true olursa bunu cagırıyorsunuz. false ıse zaten bu styleler kullanmıyorsunuz.) true-false sartına gore li ye ekleyıp-cıkartmayı yazıyoruz asagıda. ternary ıl ede yapılır. 2.sı de short cırcus yontemıyle yapılabılır. (sagındakı true ıse && solundakıkını yap)
   // newTodo.completed ? li.classList.add("completed") : "";
   // todo li oluşturulduktan sonra bu şekilde oluşturuldu.
-  completed && li.classList.add("checked");
+  completed && li.classList.add("checked"); //true ıse && sagındakını yap(tek ıslemlı-tek seceneklı)
   //? okey ikonu olustur ve li elementine bagla
   const okIcon = document.createElement("i"); //olusturduk
   okIcon.setAttribute("class", "fas fa-check"); // bu class kendısıne kazandırdık
@@ -93,46 +93,49 @@ function createListElement(newTodo) {
   const deleteIcon = document.createElement("i");
   deleteIcon.setAttribute("class", "fas fa-trash");
   li.appendChild(deleteIcon);
+
   console.log(li);
   //? meydana gelen li elementini ul'ye child olarak ata
   todoUl.appendChild(li);
 }
-// todo 3
+// todo 3////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 // todo 4
 //! Ul elementinin cocuklarindan herhangi birisinden bir event gelirse
 //! bunu tespit et ve gerekini yap. (Capturing)
 todoUl.addEventListener("click", (e) => {
-  console.log(e.target);
-
   // todo 7-1
   //  li elementinin getAttribute'nu (id) oku.
   //? id değişkeni e.target metodu ile tanımlandığı için sadece tıklanan trash'ın id'sini döndürür.
   const id = e.target.parentElement.getAttribute("id");
   // todo 7-1
 
-  //! event, bir delete butonundan geldi ise
+  //!ılk durum; event, bir delete butonundan geldi ise---> todoul ıcınde bır clıck gelmesı halınd,e bakıyoruz suan if ıle bu clıck, classlistınde fa-trash olan bır elemandan geldıyse, e.target ıle uldekı tum elemanların classlıstını kontrol ederek bu tespıtı yapıyor.
   if (e.target.classList.contains("fa-trash")) {
     //? delete butonunun parent'ini DOM'dan sil
-    e.target.parentElement.remove();
+    e.target.parentElement.remove(); //parent elemanını yanı ıcınde bulundugu liyı sıl...
     // aşağıdaki kısmı(else if'e kadar olan bölüm.) anlamak için önce  // todo 5'i incele.
 
     // todo 7
     //? Dizinin ilgili elementini LS'den sil
-    //* todos arrayına git. elemenlarını (todo --> obje'dir.) dolaş, key'i id olanlardan value'si id'ye eşit olmayanları  getir. gelen değerleri tekrar todos değişkenine ata. (todos güncellenmiş oldu.)
+    //* todos arrayına git. elemenlarını (todo --> obje'dir.) dolaş, key'i id olanlardan value'si id'ye eşit olmayanları  getir. gelen değerleri tekrar todos değişkenine ata. (todos güncellenmiş oldu.). sadece 1 tanesını getırme. dıger tum elemanları getır. getırme dedıgı ıse DOM da, yukarıda sılme ıslemı gerceklestırdıgımız elemandır.
     // id değişkenini if blogunun üzerinde tanımlamıştık.
     todos = todos.filter((todo) => todo.id !== Number(id));
     //? yukarda silme işlemini gerçekleştirdikden sonra todos dizisinin son halini localStorage'e sakla
     localStorage.setItem("TODOS", JSON.stringify(todos));
+
+    console.log("TODOS");
     // todo 7
   } else if (e.target.classList.contains("fa-check")) {
+    // tum todo ıcerısınde bak. class ı fa-check olanı bul ve asagıdakı kodu calıstır. code--->parentElement (li) classında checked varsa kaldır;yoksa ekle========> bunu toggle yapıyor.
     //! event, bir okey butonundan geldi ise
     //? ilgili li elementinde checked adinda bir class'i varsa bunu sil
     //?  aksi takdirde ekle (DOM)
     e.target.parentElement.classList.toggle("checked");
-    // console.log(e.target.parentElement);
+    console.log(e.target.parentElement);
     // todo 7-2
-    //? yukarda else if bloğunda DOM'daki e.target.parentElement (li)'ye toggle ile checked clasını vererek kırmızı veya yeşil olmasını sağladık. aynı şeyin LS de de yapmamız derekli. aşağıda da bunu yaptık.
-    let todosChecked = todos.filter((todo) => todo.id === Number(id));
+    //? yukarda else if bloğunda DOM'daki e.target.parentElement (li)'ye toggle ile checked clasını vererek kırmızı veya yeşil olmasını sağladık. aynı şeyin LS de de yapmamız gerekli. aşağıda da bunu yaptık.
+    let todosChecked = todos.filter((todo) => todo.id === Number(id)); //yukarıdakı sılme ıslemının tersıne, filter ıle burada degısıklık yapılmasını ıstedıgımız id ye sahıp liyi secıyor-fıltrelıyoruz. asagıda da bu sectıgımız lı de completed true ya esıt  ıse false; false ıse true ya esıtle dedık.
     if (todosChecked[0].completed == true) {
       todosChecked[0]["completed"] = false;
     } else {
