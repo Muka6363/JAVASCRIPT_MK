@@ -25,7 +25,7 @@ const renderError = () => {
 };
 
 const renderCountries = (data) => {
-  console.log(data);
+  console.log(data); //dıkkat burada gorulecektır kı bu bıze bır array olarak gelır.
   const countryDiv = document.querySelector(".countries");
   const {
     capital,
@@ -34,7 +34,7 @@ const renderCountries = (data) => {
     languages,
     name: { common },
     region,
-  } = data[0];
+  } = data[0]; //array olarak gelıyor ve ıcınde sadece bır tane elemanvar. 0.ındexı secmek zorundayız.
 
   console.log(Object.values(languages));
   console.log(Object.values(currencies)[0].name);
