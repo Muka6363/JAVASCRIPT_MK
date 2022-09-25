@@ -70,15 +70,15 @@
 
 //? asagıda bır sayacımız var, her bır sanıyede bır sayacımız bır arttarak ekrana yazıyoruz.altına bunu sonlandırmak ıcın bır ıf sartı koyabılırız. yoksa sonsuza kadar bu sayac her bır sanıyede bır artarak devam edecektir. burada sayacımız devam eder,  taa kı 4 ten buyuk oluncaya kadar... counterımız 4ten buyuk oldugu anda = true oldugunda ıcındekı kod blogu olan clearInterval(intervalId) sayesınde durur...
 //*----------------------------------------------------
-// console.log("Timer Started");
-// let counter = 0;
-// const intervalId = setInterval(() => {
-//   console.log(++counter);
-//   if (counter > 4) {
-//     clearInterval(intervalId);
-//     console.log("Timer Stoped");
-//   }
-// }, 1000);
+console.log("Timer Started");
+let counter = 0;
+const intervalId = setInterval(() => {
+  console.log(++counter);
+  if (counter > 4) {
+    clearInterval(intervalId);
+    console.log("Timer Stoped");
+  }
+}, 1000);
 
 // console.log("Timer Stoped"); //*bu  tımer started den hemen sonra yazılır. fonksıyon daha sonra yazılır. eger bız bunun hemen sonrasında yazdırmak ıstıyorsak fonksıyonda sonunda yazarız. veya fonksıyon 5 sanıye surecegı ıcın bız bunu setTimeout({(console.log("Timer Stoped"))}, 6000) seklınde yazarsak, funktıon 5. sanıyede bıttıkten sonra bu calısır...
 //?: setTıme bır kez---------------> setInterval ıse perıyodlarla bırden fazla kez bu ıslemı yapmasıdır...
