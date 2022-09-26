@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>JS19 - Flag APP</title>
-
+    <link rel="stylesheet" href="style.css" />
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
@@ -21,8 +21,15 @@
     />
   </head>
   <body>
-    <h1 class="text-danger text-center display-4 m-4">COUNTRIES</h1>
-    <div class="countries"></div>
+    <div class="container">
+      <h1 class="text-danger text-center display-1">\__COUNTRIES__/</h1>
+      <div class="text-center">
+        <select class="formSel w-50 mb-2" aria-label="Default select example">
+          <option class="select" selected>Countries</option>
+        </select>
+      </div>
+      <div class="countries"></div>
+    </div>
     <script src="flag-app.js"></script>
   </body>
 </html>

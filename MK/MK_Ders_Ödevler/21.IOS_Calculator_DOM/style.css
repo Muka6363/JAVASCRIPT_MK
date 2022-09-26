@@ -8,11 +8,7 @@
   padding: 200px 2px 2px 100px;
   width: 370px;
 }
-.islem1 {
-  display: flex;
-  text-align: center;
-  justify-content: end;
-}
+
 .screen {
   position: absolute;
   border: 2px solid red;

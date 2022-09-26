@@ -1,8 +1,17 @@
 //*=========================================================
 //*                     FLAG-APP
 //*=========================================================
+///////////////////////////////////////////////////////////////////////////////////////////////////////////
+let isError = false;
 
-const fetchCountryByName = (name) => {
+const formSel = document.querySelector(".formSel");
+
+formSel.addEventListener("change", (e) => {
+  console.log(e.target.value);
+  CountryByName(e.target.value);
+});
+
+const CountryByName = (name) => {
   const url = `https://restcountries.com/v3.1/name/${name}`;
   fetch(url)
     .then((res) => {
@@ -35,13 +44,14 @@ const renderCountries = (data) => {
     name: { common },
     region,
   } = data[0]; //array olarak gelıyor ve ıcınde sadece bır tane elemanvar. 0.ındexı secmek zorundayız.
-
+  //!console dan bakıldıgında gorulecektır kı, languages oldugu yer bır arraydır. bu yuzden tum valuelarını almak ıcın Object.values(languages) seklınde verı alınır; ıkıncı olarak---> currencıes ıse bır json formatında, yanı bır array ıcerısınde objeler seklınde bıze glıyor. her bır oblenın ılk key:name, ıkıncı key:symbol dur.
   console.log(Object.values(languages));
+  console.log(Object.values(currencies));
   console.log(Object.values(currencies)[0].name);
   console.log(Object.values(currencies)[0].symbol);
 
-  countryDiv.innerHTML += `
-          <div class="card mx-auto m-3 shadow-lg" style="width: 18rem;">
+  countryDiv.innerHTML = `
+          <div class="card mx-auto m-3 shadow-lg" style="width: 20rem;">
             <img src="${svg}" class="card-img-top" alt="...">
             <div class="card-body">
               <h5 class="card-title">${common}</h5>
@@ -63,16 +73,59 @@ const renderCountries = (data) => {
                 )}
              </li>
             </ul>
-            <div class="card-body">
-              <a href="#" class="card-link">Card link</a>
-              <a href="#" class="card-link">Another link</a>
-            </div>
-          </div>
-      
-      
-        `;
+          </div>`;
 };
 
-fetchCountryByName("turkey");
-fetchCountryByName("western sahara");
-fetchCountryByName("south africa");
+const CountryByAllName = () => {
+  const url = "https://restcountries.com/v3.1/all";
+  fetch(url)
+    .then((res) => {
+      if (!res.ok) {
+        renderError(`Something went wrong: ${res.status}`);
+        throw new Error();
+      }
+      return res.json();
+    })
+    .then((data) => renderNames(data))
+    .catch((err) => console.log(err));
+};
+
+// const CountryByAllName =async ()=> {
+
+//   const url ="https://restcountries.com/v3.1/all"
+//   try {
+//     const res = await fetch(url);
+
+//     if (!res.ok) {
+//       isError = true;
+//     }
+
+//     const data = await res.json();
+
+//     renderNames(data);
+//   } catch (error) {
+//     console.log(error)
+//   }
+
+// }
+const renderNames = (data) => {
+  const formSel = document.querySelector(".formSel");
+  const myBody = document.querySelector("body");
+
+  if (isError) {
+    myBody += `
+      <h2>News Can not be fetched</h2>
+      <img src="./img/404.png" alt="" />
+    `;
+    return;
+  }
+
+  data.forEach((item) => {
+    formSel.innerHTML += `
+    <option value="${item.name.common}">${item.name.common}</option>
+    `;
+  });
+  console.log(data);
+};
+
+CountryByAllName();
