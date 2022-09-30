@@ -16,7 +16,7 @@ const book1 = {
 
 console.log(book1);
 console.log(book1.getSummary());
-console.log(book1.hasOwnProperty("author")); //? true
+console.log(book1.hasOwnProperty("author")); //! bu method, bu eleman bu objenın ıcınde olup olmadıgını sorgular, cevap olarak da true-false cıkar sonucu...
 //! Object nesnesinden miras yoluyla geldi.
 
 const book2 = {
@@ -34,3 +34,4 @@ console.log(book2.getSummary());
 //? Object literals yontemi ile fazla sayida yeni objeler olusturmak oldukca zahmetlidir.
 //? Ayrica programcilik yaklasimi acisindan da cok tekrar icerdigi icin uygun degildir (DRY - Dont Repeat Yourself)
 //? Cozum: Object Oriented Programming (ES5 and ES6)
+//!bu ılkel bır yontemdr... yenı yontemler dıger sayfalarda...

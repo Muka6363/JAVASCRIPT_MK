@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css" />
+    <link
+      href="https://fonts.googleapis.com/css?family=Orbitron"
+      rel="stylesheet"
+      type="text/css"
+    />
+  </head>
+  <body>
+    <div class="box">
+      <div class="iç">
+        <p class="üst"></p>
+        <p class="alt"></p>
+        <span></span>
+      </div>
+    </div>
+    <div class="alarm">
+      <h1>ALARM</h1>
+      <div>
+        <input id="saat" placeholder="Saat" type="number" min="0" max="12" />
+        <input
+          id="dakika"
+          placeholder="Dakika"
+          type="number"
+          min="0"
+          max="59"
+        />
+        <input
+          id="saniye"
+          placeholder="Saniye"
+          type="number"
+          min="0"
+          max="59"
+        />
+        <select name="" id="vakit">
+          <option class="vakit1" value="AM">A.M.</option>
+          <option class="vakit2" value="PM">P.M.</option>
+        </select>
+      </div>
+      <button id="btn">KUR</button>
+    </div>
+    <audio src="" autoplay></audio>
+    <p id="uyarı">ALARM KURULDU</p>
+    <script src="gp.js"></script>
+  </body>
+</html>

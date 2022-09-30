@@ -4,15 +4,16 @@
 
 //* Javascript, prototype-temelli bir dildir.
 //* Butun JavaScript nesneleri (objects) ozellikleri (properties)
-//* ve metotlari bir prototipten miras olarak almaktadir.
+//* ve methotlari bir prototipten miras olarak almaktadir.
 //* Object prototipi, prototip miras zincirinin en tepesinde yer almaktadir.
 //* Ornegin Date ve Array nesneleri Object.prototype'dan miras almaktadir.
 
 //? Object Constructor
-function Book(title, author, year) {
+// todo---> function dıye yazılır. parametreler sıralarınır...suslu acılır ve ıcıne herbır parametre this.kelimesiyle bılıkte tanımlanır. ısımlerın aynı olması gerekmez onemlı olan basta yazılanın ıcerde tanımlanmasıı aynı olsun...
+function Book(title, author, y) {
   this.author = author;
   this.title = title;
-  this.year = year;
+  this.year = y;
   // this.getSummary = function () {
   //   return `${this.title} was writtten by ${this.author} in ${this.year}`;
   // };
@@ -23,7 +24,7 @@ function Book(title, author, year) {
 //? Constructor, mantiksal bir ifade iken instance fiziksel bir olusum gibi dusunulebilir.
 //? Contructor'da tanimlanmis tum degisken ve fonksiyonlar olusturulan
 //? her bir instance'da hayat bulmus olur.
-
+// todo--->  constructor temeldedır... bu temelden olusturulacaklar sa bırır ornek-instancedır. new keyworduyla bırlıkte yazılır. her bır parametreye karsılık gelecek argumanlar da yazılır..
 //?instance
 const book1 = new Book("Kasagi", "Omer Seyfettin", 1920);
 
@@ -35,10 +36,12 @@ const book2 = new Book("Sinekli Bakkal", "H. Edip Adıvar", 1930);
 //! Prototip alaninda bir metot tanimlamanin avantaji bu metot'un
 //! olusan tum instance'larin belleginde yer kaplamamasi ancak tum
 //! instance'larin bu metota ulasabilmesidir.
+console.log(book2);
 
 Book.prototype.getAge = function () {
   return new Date().getFullYear() - this.year;
 };
+console.log(book1);
 
 Book.prototype.getSummary = function () {
   return `${this.title} was writtten by ${this.author} in ${this.year}`;
@@ -68,20 +71,20 @@ console.log(book2.getAge());
 //? INHERITANCE (Kalitim - ES5)
 //?----------------------------------------------------------
 
-//? Sub-Class
-function Magazine(title, author, year, month) {
-  Book.call(this, title, author, year);
-  this.month = month;
-}
+// //? Sub-Class
+// function Magazine(title, author, year, month) {
+//   Book.call(this, title, author, year);
+//   this.month = month;
+// }
 
 //! Prototipleri miras almak icin Object.create() metodu kullanabilir.
-Magazine.prototype = Object.create(Book.prototype);
+// Magazine.prototype = Object.create(Book.prototype);
 
-//? Magazine objesinin yeni bir instance
-const mag1 = new Magazine("Scientific Research", "Einstein", 1926, "Sep");
-console.log(mag1);
+// //? Magazine objesinin yeni bir instance
+// const mag1 = new Magazine("Scientific Research", "Einstein", 1926, "Sep");
+// console.log(mag1);
 
-//! Prototipler dogrudan miras olarak gelmez.
-console.log(mag1.getSummary());
-console.log(mag1.getAge());
-console.log(mag1.price);
+// //! Prototipler dogrudan miras olarak gelmez.
+// console.log(mag1.getSummary());
+// console.log(mag1.getAge());
+// console.log(mag1.price);
