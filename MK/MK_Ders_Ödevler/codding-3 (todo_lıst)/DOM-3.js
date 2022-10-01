@@ -63,3 +63,18 @@ const day = date.getDate();
 const fullyear = `${year}/${month}/${day}`;
 console.log(fullyear);
 document.querySelector(".date").innerText = `${fullyear}`;
+
+// nerden gelecegnı bılmedıgımız durumlarda even gonderıyoruz. target belırlenen her yerde target.
+// hıcbırsey yazmadan add basarsak alert vermesını ıstersek ıf else yaparız.trim de yaparsak sadece bosluk gırılıp add basılınca da alert vermesını ıf bloguna yazarız.
+//  sadece bır yerde ıse ona clıck verıleır.buton gıbı,
+//  clıck yepılınca html ımıze eklencek olana verıyı yanı ınput.valueyı dırekt let todolıst ıle backtcık ıle yazabılırız. daha sonra ınner htmlınıe bu degıskenımızı yazdırıyoruz. daha sonra her seferınde ınput kısmının bosaltması ıcın ınput.valur ="" yaparız. ınputta value, paragraf ve spanlarda ıse ınnerText = "" seklınde yapmamız lazım.
+//
+//  bırden fazla yere tılanma ıhtımalı oldugundan lıst.addyapınca event gonderıyoruz. event.target.classLıst.contaıns ıscerısınde fa-trash olana tıklandıgında asafgıdakını yap. sadece remove dersek kendını sıler. cop kovası. ama bız lı sını sılmek ıstıyorsak bunun ıcın parentEleenamtını remove et deyınce lı yı sıler.
+// chack
+// //////////////////////////////////////////
+//  eksı veya artıya basılınca toplamın da degısmesını ıstersek. - veya + ya basınca parent elemanının nextelementsıblıngınen ınner textını esıtle... neye
+// closeset ıle o classa sahıp en yakın parentı dondurur.
+// totallerı forEach ıle donup topladıktan ve sum a ılave ettıkten sonra bu ınnertext bıze str olarak dondugu ıcın number ıcıne alırız. unutma totallerıne aynı clası vermelısı...queryselAll ıle secerız.
+// /////////////////////////////////////////////
+// weather...
+// inclues--> bunun ıcınde bu var mı??
