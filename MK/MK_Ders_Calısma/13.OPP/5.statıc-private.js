@@ -10,27 +10,21 @@
 //? ihtiyac varsa o zaman static degisken kullanmak mantiklidir.
 
 //! Encapsulation OOP'nin temel unsurlarindan birisidir.
-//! Bir class icerisindeki degeri/durumu class disindan dogrudan ve
-//! izinsiz erisimlere kapatmak icin kullanilir.
+//! Bir class icerisindeki degeri/durumu class disindan dogrudan ve izinsiz erisimlere kapatmak icin kullanilir.
 
 //! Encapsulation private degiskenler ve private metotlar yardimiyla yapilir.
 //! ES6 ve sornasinda private degisken ve metotlari belirtmek icin
 //! # (hash) kullanilir.
 
-//! Private degiskenler dogrudan erisilemezler. Bunlara erismek icin class
-//! icerisinde tanimlanan public (genel) erisimli getter ve setter metotlar
-//! kullanilir.
+//! Private degiskenler dogrudan erisilemezler. Bunlara erismek icin class icerisinde tanimlanan public (genel) erisimli getter ve setter metotlar kullanilir. bu ozel bır code dur,ancak benım ıstedıgım sekılde kullanabılırsın.
+//! .
 
 //! Private metotlara ise class disirasindan da eriselemez.
 //! Private metotlara ancak class icerisindeki diger metotlar ile erisilebilir.
 
 class Book {
-  //!Private degisken tanimlamasi
-  #id;
-
-  //! static property tanimlamasi
-  static counter = 0;
-
+  #id; //!Private degisken tanimlamasi, buna ılk basta "123456" degerı verelım
+  static counter = 0; //! static property tanimlamasi
   constructor(title, author, year) {
     this.author = author;
     this.title = title;
@@ -48,7 +42,7 @@ class Book {
 
   //? Class icerisinde public metotlar yardimiyla private degiskenler okunabilir.
   //? Bu tip metotlara getter metot denilir.
-  //! getter metotlari class icerisinde tanimlanmalidir.
+  //! getter metotlari class icerisinde tanimlanmalidir. bunu ancak getId metoduyla okuyabılırsın dıye kısıtlama yapmıs.
   getId() {
     return this.#id;
   }
@@ -66,7 +60,7 @@ class Book {
     } so its age is ${this.#computeAge()} `;
   }
 
-  //!private metot tanimlanmsi
+  //!private metot tanimlanmsi...basına # mutlaka kullanılmalı. buna dısarıdan erısılemez. bunu ancak claasın ıcerısınde kullanılabılır-erısılebılır. kontrollu erısım ıcın bu yazılır.
   #computeAge() {
     return new Date().getFullYear() - this.year;
   }

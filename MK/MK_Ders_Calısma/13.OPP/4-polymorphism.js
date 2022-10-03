@@ -41,7 +41,7 @@ class Magazine extends Book {
     this.month = month;
   }
   //! Overrided Metot (Parent class'daki bir metodun farkli
-  //! fonksiyonellikle  ve ayni parametre listesi ile yeniden tanimlanmasi)
+  //! fonksiyonellikle ve ayni parametre listesi ile yeniden tanimlanmasi. parent-chıld ılıskısı ıcerısınde bır chıldın parent ıcındekı bır veya bırden metodu ezmesıdır. parente bulunan bı metodu aynı ısımle tekrar chıldında tanımlanmasıdır. burada getSummery hem yukarıda hem de chıldında yenıden tanımlanmıstır.)
   getSummary() {
     return `${this.title} was writtten by ${this.author} in ${this.year} in ${this.month}`;
   }
@@ -50,7 +50,7 @@ class Magazine extends Book {
   getSummaryParent() {
     return super.getSummary();
   }
-  //! Overloaded Metot (Ayni metodun farkli parametreler ile kullanilmasi)
+  //! Overloaded Metot (Ayni metodun farkli parametreler ile kullanilmasi..asırı yukleme...overrıdde da hersey aynı ısım vs. ama ıcı degısık...overloadded ıse; ısım aynı fakat parametesı degısık...)
   setPrice(price, taxRate = 1.1) {
     this.price = Math.trunc(price * taxRate);
   }
