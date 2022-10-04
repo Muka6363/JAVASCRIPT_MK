@@ -1,119 +1,159 @@
-const forum = document.querySelector("forum");
-const formJquery = jQuery("forum");
-/*
-js de tum dıv ınput button vs ulasmak ıcın ıterasyon sart ıken JQ de bun agerek yoktur.
-get(index), eq(ındex) eger sjq tarafından elde etmek ıstıyorsak.
-JQUERY == $
-*/
+//  JQuery ıle :
+const formJS = document.querySelectorAll("form")[0];
+//jQUERY === $
+//const formJquery = jQuery("form").eq(0);
+const formJquery = $("form").eq(0);
+const inputJQ = $(".top-banner input").eq(0);
+const msgJQ = $(".top-banner span").eq(0);
+const listJQ = $(".cities").eq(0);
 
-const form = document.querySelector("section.top-banner form");
-const input = document.querySelector(".container input");
-const msg = document.querySelector("span.msg");
-const list = document.querySelector(".ajax-section ul.cities");
+//console.log(formJS);
+//console.log(formJquery);
+//console.log(inputJQ);
 
-// localStorage.setItem("tokenKeyEncrypted", EncryptStringAES("4d8fb5b93d4af21d66a2948710284366"));
+// get(index) ==> toArray(get()) , eq(index)
 
-localStorage.setItem(
-  "tokenKey",
-  "RAPAIooyOVFdRNn7gPi6i8vUp3OJvy0Np5wgMGgNO0a2a258kya95/arqJmhPrWc"
-);
+//load VS DOMContentLoaded
+//DOMContentLoaded ==> means page rendered, DOM is ready
+//window load ==> (all content (e.g. images, styles etc) also loaded)
 
-form.addEventListener("submit", (event) => {
-  event.preventDefault();
+//window.onload = () =>{} ===> JS
+// addEventListener ===> on
+
+$(window).on("load", () => {
+  console.log("window.load");
+});
+
+// document.addEventListener("DOMContentLoaded", ()=>{}) ==> JS
+
+// $(document).on("DOMContentLoaded", ()=>{
+//     console.log("DOMContentLoaded");
+// });
+
+$(document).ready(() => {
+  console.log("DOMContentLoaded");
+  localStorage.setItem(
+    "apiKey",
+    EncryptStringAES("4d8fb5b93d4af21d66a2948710284366")
+  );
+});
+
+// formJquery.on("submit", (e)=>{
+//     e.preventDefault();
+//     getWeatherDataFromApi();
+// });
+
+formJquery.submit((e) => {
+  e.preventDefault();
   getWeatherDataFromApi();
 });
 
-//Api Get func. (http methods == Verbs)
 const getWeatherDataFromApi = async () => {
-  //alert("http request is gone!");
-  const tokenKey = DecryptStringAES(localStorage.getItem("tokenKey"));
-  //alert(tokenKey);
-  const inputValue = input.value;
+  //console.log("AJAX Func. is called");
+  const apiKey = DecryptStringAES(localStorage.getItem("apiKey"));
+  //JS .value == jQUERY .val()
+  const cityName = inputJQ.val();
+  console.log(cityName);
   const units = "metric";
   const lang = "tr";
-  const url = `https://api.openweathermap.org/data/2.5/weather?q=${inputValue}&appid=${tokenKey}&units=${units}&lang=${lang}`;
+  const url = `https://api.openweathermap.org/data/2.5/weather?q=${cityName}&appid=${apiKey}&units=${units}&lang=${lang}`;
 
-  try {
-    // const response = await fetch(url).then(response => response.json());
-    const response = await axios(url);
-    console.log(response);
-    //obj destr.
-    const { main, sys, weather, name } = response.data;
+  // XMLHttpRequest(xhr) vs. fetch() vs. axios vs. $.ajax
 
-    const iconUrl = `http://openweathermap.org/img/wn/${weather[0].icon}@2x.png`;
-    const iconUrlAWS = `https://s3-us-west-2.amazonaws.com/s.cdpn.io/162656/${weather[0].icon}.svg`;
+  $.ajax({
+    type: "GET",
+    url: url,
+    dataType: "json",
+    success: (response) => {
+      //main body func.
+      console.log(response);
+      const { main, sys, name, weather } = response;
+      const iconUrlAWS = `https://s3-us-west-2.amazonaws.com/s.cdpn.io/162656/${weather[0].icon}.svg`;
+      //alternative iconUrl
+      const iconUrl = `https://openweathermap.org/img/wn/${weather[0].icon}@2x.png`;
 
-    const cityNameSpans = list.querySelectorAll(".city span");
-    const cityNameSpansArray = Array.from(cityNameSpans);
-    if (cityNameSpansArray.length > 0) {
-      const filteredArray = cityNameSpansArray.filter(
-        (span) => span.innerText == name
-      );
-      if (filteredArray.length > 0) {
-        msg.innerText = `You already know the weather for ${name}, Please search for another city 😉`;
-        setTimeout(() => {
-          msg.innerText = "";
-        }, 5000);
-        form.reset();
-        return;
+      //js=>document.createElement("li")
+
+      // const createdLi2 = $(document.createElement("li"))
+
+      //weather card control!!
+
+      const cityCardList = listJQ.find(".city");
+      const cityCardListArray = cityCardList.get();
+
+      //console.log(cityCardList);
+      if (cityCardListArray.length > 0) {
+        const filteredArray = cityCardListArray.filter(
+          (li) => $(li).find("span").text() == name
+        );
+        if (filteredArray.length > 0) {
+          //innerText
+          msgJQ.text(
+            `You already know the weather for ${name}, Please search for another city 😉`
+          );
+          //styling
+          msgJQ.css({ color: "red", "text-decoration": "underline" });
+          return;
+        }
       }
-    }
-    //console.log(cityNameSpans);
-    const createdLi = document.createElement("li");
-    createdLi.classList.add("city");
-    createdLi.innerHTML = `<h2 class="city-name" data-name="${name}, ${
-      sys.country
-    }">
-                                <span>${name}</span>
-                                <sup>${sys.country}</sup>
-                            </h2>
-                            <div class="city-temp">${Math.round(
-                              main.temp
-                            )}<sup>°C</sup></div>
-                            <figure>
-                                <img class="city-icon" src="${iconUrl}">
-                                <figcaption>${
-                                  weather[0].description
-                                }</figcaption>
-                            </figure>`;
-    //append vs. prepend
-    list.prepend(createdLi);
 
-    //Capturing
-    // createdLi.addEventListener("click", (e)=>{
-    //     if(e.target.tagName == "IMG"){
-    //         e.target.src = (e.target.src == iconUrl) ? iconUrlAWS : iconUrl;
-    //     }
-    // });
+      const createdLi = $("<li></li>");
+      createdLi.addClass("city");
+      createdLi.html(`
+            <h2 class="city-name" data-name="${name}, ${sys.country}">
+                <span>${name}</span>
+                <sup>${sys.country}</sup>
+            </h2>
+            <div class="city-temp">${Math.round(main.temp)}<sup>°C</sup></div>
+            <figure>
+                <img class="city-icon" src="${iconUrl}">
+                <figcaption>${weather[0].description}</figcaption>
+            </figure>`);
 
-    //Bubbling
-    // createdLi.addEventListener("click", (e)=>{
-    //     alert(`LI element is clicked!!`);
-    //     window.location.href = "https://clarusway.com";
-    // });
-    // createdLi.querySelector("figure").addEventListener("click", (e)=>{
-    //     alert(`FIGURE element is clicked!!`);
-    //     //STOP BUBBLING
-    //     //e.stopPropagation();
-    //     // window.location.href = "https://clarusway.com";
-    // });
-    // createdLi.querySelector("img").addEventListener("click", (e)=>{
-    //     alert(`IMG element is clicked!!`);
-    //     // window.location.href = "https://clarusway.com";
-    // });
-  } catch (error) {
-    console.log(error);
-    msg.innerText = `404 (City Not Found)`;
-    setTimeout(() => {
-      msg.innerText = "";
-    }, 5000);
-  }
-  form.reset();
+      //append vs. prepend both in JS AND JQUERY
+      listJQ.prepend(createdLi);
+
+      //Jquery Samples
+      // $(".city img").click((e)=>{
+      //     //getAttribute, setAttribute ==> attr
+      //     window.location.href = $(e.target).attr("src");
+      //     //$(e.target).attr("src", iconUrlAWS);
+      // });
+
+      //Animation
+      // $(".city").click((e)=>{
+      //     $(e.target).animate({left:'250px'});
+      // });
+
+      //Jquery chaining slideUp vs. slideDown
+      $(".city img").click((e) => {
+        $(e.target).slideUp(2000).slideDown(2000);
+      });
+
+      //hide() vs show()
+      // $(".city img").click((e) => {
+      //     $(e.target).hide();
+      // });
+
+      //formJS.reset();
+      formJquery.trigger("reset");
+    },
+    beforeSend: (request) => {
+      //Encryption
+      //header/body
+      //token
+      console.log("before ajax send");
+    },
+    complete: () => {
+      console.log("after ajax send");
+    },
+    error: (XMLHttpRequest) => {
+      //logging
+      //postErrorLog(p1,p2,p3,p4);
+      console.log(XMLHttpRequest);
+      msgJQ.text(`${XMLHttpRequest.status} ${XMLHttpRequest.statusText}`);
+      //styling
+      msgJQ.css({ color: "red", "text-decoration": "underline" });
+    },
+  });
 };
-//window onload
-// document.querySelector(".cities").addEventListener("click", (e) => {
-//     if (e.target.tagName == "IMG") {
-//         alert("img is clicked!!!")
-//     }
-// }
-// )
