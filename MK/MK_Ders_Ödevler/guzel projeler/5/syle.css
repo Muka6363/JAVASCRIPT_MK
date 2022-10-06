@@ -1,0 +1,282 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  font-family: "Baloo 2", cursive;
+  background-color: #b5aa9e;
+}
+.add-section {
+  background-image: url(./images/background.jpg);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
+  height: 70vh;
+  color: white;
+}
+.container {
+  background-color: rgba(0, 0, 0, 50%);
+  height: 70vh;
+}
+.daily-task {
+  width: 50%;
+  background-color: rgba(0, 0, 0, 75%);
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 50px 0px 50px 30px;
+  position: relative;
+}
+.daily-task input {
+  background-color: transparent;
+  color: rgba(255, 255, 255, 0.7);
+  border: none;
+  border-radius: 0.3rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+  box-shadow: rgba(99, 99, 99, 0.4) 1px 1px 2px 0px;
+  outline: none;
+  width: 80%;
+  max-width: 100%;
+  margin: 20px 0;
+  padding: 10px 0;
+  font-size: 1rem;
+  font-family: "Baloo 2", cursive;
+}
+.daily-task input::placeholder {
+  font-family: "Baloo 2", cursive;
+  font-size: 1rem;
+  padding-left: 1rem;
+}
+.daily-task input:focus {
+  box-shadow: rgba(99, 99, 99, 0.4) 1px 3px 8px 2px;
+  transition: all 0.5s;
+  padding-left: 1rem;
+}
+.add-task-btn {
+  background-color: #1d4f4c;
+  border: none;
+  color: rgba(255, 255, 255, 0.7);
+  padding: 10px;
+  width: 80%;
+  max-width: 80%;
+  margin-top: 20px;
+  border-radius: 5px;
+  margin-bottom: 3rem;
+  font-size: 1rem;
+}
+.add-task-btn:hover {
+  transition: all 0.5s;
+  box-shadow: rgba(99, 99, 99, 0.4) 1px 2px 4px 2px;
+  background-color: #1d4f4cc8;
+}
+.date-todo {
+  text-align: end;
+  position: absolute;
+  right: 2rem;
+  bottom: 1rem;
+  font-size: 12px;
+}
+.review-section {
+  color: #542c08;
+  padding: 50px 0px 50px 50px;
+}
+.review-section h2 {
+  font-size: 40px;
+}
+.review-section li {
+  list-style-type: none;
+}
+/* TASK */
+.add-task-ul .taskItem {
+  width: 90%;
+  display: flex;
+  margin-top: 30px;
+  margin-bottom: 30px;
+  border-bottom: 5px solid rgba(84, 43, 8, 0.5);
+}
+/* RIGHT DIV */
+.right-div {
+  height: 100%;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  width: 20%;
+}
+/* LEFT DIV */
+.left-div {
+  width: 90%;
+  height: 100%;
+}
+
+/* task div */
+.task-li-div {
+  display: flex;
+}
+.task-li-div .task {
+  padding-left: 0.5rem;
+  font-weight: 600;
+  font-size: 1.5rem;
+}
+/* description div */
+.description-li-div {
+  display: flex;
+}
+.description-li-div .description {
+  display: flex;
+  padding-left: 0.5rem;
+  font-size: 600;
+  font-size: 1.2rem;
+}
+
+/*icon sizes*/
+.bi {
+  font-weight: bold;
+  font-size: 1.5rem;
+}
+.bi-trash3 {
+  font-size: 1.5rem;
+  padding-right: 0.7rem;
+}
+
+/* toggle control */
+li.checked .complated-icon {
+  color: #1d4f4c;
+}
+li.checked .task {
+  color: #1d4f4c87;
+  text-decoration: line-through;
+}
+li.checked .description {
+  color: rgba(84, 43, 8, 0.6);
+  text-decoration: line-through;
+}
+li.checked .bi {
+  color: #1d4f4c87;
+}
+li.checked .edit-icon-description {
+  color: rgba(84, 43, 8, 0.6);
+}
+/*modal*/
+.modal-container {
+  background-color: rgba(0, 0, 0, 0.5);
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 100vw;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+.modal {
+  background-color: #285a57;
+  text-align: center;
+  padding: 30px 50px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  border-radius: 10px;
+  width: 500px;
+  max-width: 100%;
+  font-size: 1.5rem;
+}
+.modal i {
+  font-size: 3rem;
+}
+.modal button {
+  border: none;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  font-size: 1.3rem;
+  color: #285a57;
+  font-weight: 500;
+  padding: 5px 50px;
+  margin-top: 20px;
+  font-family: "Baloo 2", cursive;
+  cursor: pointer;
+}
+.modal button:hover {
+  transform: translate(3px, 0px);
+  transition: all 0.5s;
+}
+/*error message*/
+.errorBox {
+  color: #fff;
+  width: 80%;
+  max-width: 80%;
+  text-align: center;
+  font-family: "Baloo 2", cursive;
+  font-size: 1rem;
+  overflow: hidden;
+}
+.errorBox .errorMessage {
+  position: relative;
+  background-color: rgba(84, 43, 8, 0.3);
+  padding: 8px;
+  left: -1000px;
+  transition: left 0.8s;
+  border-radius: 2px;
+}
+@media screen and (max-width: 650px) {
+  .create-todo h1 {
+    font-size: 1.1rem;
+  }
+  .daily-task input {
+    margin: 15px 0;
+    padding: 5px 0;
+    font-size: 0.7rem;
+  }
+  .daily-task input::placeholder {
+    font-family: "Baloo 2", cursive;
+    font-size: 0.7rem;
+    padding-left: 0.3rem;
+  }
+  .daily-task input:focus {
+    box-shadow: rgba(99, 99, 99, 0.4) 1px 3px 8px 2px;
+    transition: all 0.5s;
+    padding-left: 0.3rem;
+  }
+  .add-task-btn {
+    color: rgba(255, 255, 255, 0.7);
+    padding: 5px;
+    margin-top: 10px;
+    border-radius: 3px;
+    margin-bottom: 3rem;
+    font-size: 0.7rem;
+  }
+  .errorBox {
+    text-align: center;
+    font-family: "Baloo 2", cursive;
+    font-size: 0.5rem;
+    overflow: hidden;
+  }
+  .errorBox .errorMessage {
+    position: relative;
+    background-color: rgba(84, 43, 8, 0.4);
+    padding: 5px;
+  }
+  .review-section h2 {
+    font-size: 1.1rem;
+  }
+  .task-li-div .task {
+    font-size: 1rem;
+  }
+  .description-li-div {
+    display: flex;
+  }
+  .description-li-div .description {
+    font-size: 0.9rem;
+  }
+  .bi {
+    font-size: 1rem;
+  }
+  .bi-trash3 {
+    padding-right: 0.8rem;
+  }
+  .review-section {
+    color: #542c08;
+    padding: 50px 0px 50px 10px;
+  }
+}
